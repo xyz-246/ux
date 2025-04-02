@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+
+function App() {
+  const candidates = ["Alice", "Bob", "Charlie"];
+  const [votes, setVotes] = useState({ Alice: 0, Bob: 0, Charlie: 0 });
+
+  const handleVote = (candidate) => {
+    setVotes({ ...votes, [candidate]: votes[candidate] + 1 });
+  };
+
+  return (
+    <div style={styles.container}>
+      <h2 style={styles.heading}>Voting Application</h2>
+      <div style={styles.candidates}>
+        {candidates.map((candidate) => (
+          <div key={candidate} style={styles.candidate}>
+            <h3>{candidate}</h3>
+            <p>Votes: {votes[candidate]}</p>
+            <button style={styles.button} onClick={() => handleVote(candidate)}>
+              Vote
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Internal CSS styles
+const styles = {
+  container: {
+    textAlign: "center",
+    fontFamily: "Arial, sans-serif",
+    marginTop: "50px",
+  },
+  heading: {
+    color: "#007bff",
+  },
+  candidates: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
+  },
+  candidate: {
+    border: "1px solid #ccc",
+    padding: "10px",
+    borderRadius: "5px",
+    textAlign: "center",
+  },
+  button: {
+    background: "green",
+    color: "white",
+    border: "none",
+    padding: "8px 15px",
+    cursor: "pointer",
+    marginTop: "5px",
+    borderRadius: "5px",
+  },
+};
+
+export default App;
